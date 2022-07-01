@@ -1,17 +1,17 @@
 package com.github.klainstom.microstom.commands;
 
-import com.github.klainstom.microstom.Settings;
 import net.minestom.server.MinecraftServer;
 import net.minestom.server.command.ConsoleSender;
 import net.minestom.server.command.ServerSender;
-import net.minestom.server.command.builder.Command;
+import net.minestom.server.entity.Player;
 
-public class ShutdownCommand extends Command {
+public class ShutdownCommand extends BaseCommand {
     public ShutdownCommand() {
-        super("shutdown", "end", "stop");
+        super("shutdown", "stop");
         setCondition(((sender, commandString) -> (sender instanceof ServerSender)
                 || (sender instanceof ConsoleSender)
-                || Settings.isAllowPlayerShutdown()));
+                || sender instanceof Player p && (p.getPermissionLevel() < 4 || p.hasPermission(getPermission()))
+        ));
         addSyntax(((sender, context) -> MinecraftServer.stopCleanly()));
     }
 }

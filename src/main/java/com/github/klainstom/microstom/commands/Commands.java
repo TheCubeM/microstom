@@ -1,14 +1,15 @@
 package com.github.klainstom.microstom.commands;
 
+import lombok.Getter;
 import net.minestom.server.command.builder.Command;
 
-import java.util.LinkedHashMap;
-import java.util.Map;
+public enum Commands {
+    SHUTDOWN(new ShutdownCommand()),
+    RESTART(new RestartCommand()),
+    GAMEMODE(new GamemodeCommand());
 
-public class Commands {
-    public static final Map<String,Command> commands = new LinkedHashMap<>();
-    static {
-        commands.put("SHUTDOWN", new ShutdownCommand());
-        commands.put("RESTART", new RestartCommand());
+    @Getter private final Command command;
+    Commands(Command command) {
+        this.command = command;
     }
 }

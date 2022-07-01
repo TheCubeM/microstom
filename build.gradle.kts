@@ -1,4 +1,5 @@
 plugins {
+    id("io.freefair.lombok") version "6.5.0.2"
     alias(libs.plugins.blossom)
     alias(libs.plugins.shadowJar)
     java

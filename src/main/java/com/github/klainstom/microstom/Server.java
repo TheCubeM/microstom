@@ -1,6 +1,5 @@
 package com.github.klainstom.microstom;
 
-import com.github.klainstom.microstom.commands.Commands;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;
 import net.minestom.server.MinecraftServer;
@@ -60,7 +59,6 @@ public class Server {
                 event.getPlayer().kick(Component.text("There is no instance available!", NamedTextColor.RED));
         });
 
-        Commands.commands.forEach((name, command) -> MinecraftServer.getCommandManager().register(command));
         MinecraftServer.getExtensionManager().setExtensionDataRoot(Path.of("config"));
 
         switch (Settings.getMode()) {
