@@ -8,7 +8,7 @@ import java.util.Map;
 public class Commands {
     public static final Map<String,Command> commands = new LinkedHashMap<>();
     static {
-        commands.put("SHUTDOWN",new ShutdownCommand());
-        commands.put("RESTART",new RestartCommand());
+        commands.put("SHUTDOWN", new ShutdownCommand());
+        commands.put("RESTART", new RestartCommand());
     }
 }
