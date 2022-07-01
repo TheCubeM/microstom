@@ -7,6 +7,7 @@ import net.minestom.server.event.player.PlayerLoginEvent;
 import net.minestom.server.extras.MojangAuth;
 import net.minestom.server.extras.bungee.BungeeCordProxy;
 import net.minestom.server.extras.velocity.VelocityProxy;
+import net.minestom.server.instance.InstanceContainer;
 
 import java.io.File;
 import java.io.IOException;
@@ -29,7 +30,6 @@ public class Server {
             System.setProperty("minestom.entity-view-distance", Settings.getEntityViewDistance());
         if (Settings.isTerminalDisabled())
             System.setProperty("minestom.terminal.disabled", "");
-
         MinecraftServer.LOGGER.info("====== VERSIONS ======");
         MinecraftServer.LOGGER.info("Java: " + Runtime.version());
         MinecraftServer.LOGGER.info("&Name: " + VERSION);
@@ -53,8 +53,11 @@ public class Server {
 
         // Actually start server
         MinecraftServer server = MinecraftServer.init();
+        InstanceContainer spawningInstanceContainer = MinecraftServer.getInstanceManager()
+                .createInstanceContainer();
 
         MinecraftServer.getGlobalEventHandler().addListener(PlayerLoginEvent.class, event -> {
+            event.setSpawningInstance(spawningInstanceContainer);
             if (MinecraftServer.getInstanceManager().getInstances().isEmpty())
                 event.getPlayer().kick(Component.text("There is no instance available!", NamedTextColor.RED));
         });
