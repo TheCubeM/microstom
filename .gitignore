@@ -114,3 +114,8 @@ gradle-app.setting
 **/build/
 
 # End of https://www.toptal.com/developers/gitignore/api/gradle,intellij+all
+/start.sh
+/micro-settings.json
+/logs/
+/extensions/
+/world/
