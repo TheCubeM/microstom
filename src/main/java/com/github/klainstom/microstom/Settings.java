@@ -55,7 +55,7 @@ public class Settings {
             this.SERVER_IP = "localhost";
             this.SERVER_PORT = 25565;
 
-            this.MODE = RunMode.OFFLINE;
+            this.MODE = RunMode.ONLINE;
             this.VELOCITY_SECRET = "";
 
             this.PLAYER_RESTART = false;
