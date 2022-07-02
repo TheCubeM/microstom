@@ -1,5 +1,6 @@
 package com.github.klainstom.microstom;
 
+import com.github.klainstom.microstom.commands.Commands;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;
 import net.minestom.server.MinecraftServer;
@@ -12,7 +13,6 @@ import net.minestom.server.instance.InstanceContainer;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
-import java.nio.file.Path;
 import java.util.Objects;
 
 public class Server {
@@ -53,6 +53,13 @@ public class Server {
 
         // Actually start server
         MinecraftServer server = MinecraftServer.init();
+
+        // register commands so they can actually be used
+        for(Commands command : Commands.values()) {
+            command.getCommand().register();
+        }
+
+        // load instance from ./world
         InstanceContainer spawningInstanceContainer = MinecraftServer.getInstanceManager()
                 .createInstanceContainer();
 
@@ -61,8 +68,6 @@ public class Server {
             if (MinecraftServer.getInstanceManager().getInstances().isEmpty())
                 event.getPlayer().kick(Component.text("There is no instance available!", NamedTextColor.RED));
         });
-
-        MinecraftServer.getExtensionManager().setExtensionDataRoot(Path.of("config"));
 
         switch (Settings.getMode()) {
             case OFFLINE:

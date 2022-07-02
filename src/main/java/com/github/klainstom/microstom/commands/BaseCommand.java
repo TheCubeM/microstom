@@ -14,6 +14,9 @@ public abstract class BaseCommand extends Command {
     public BaseCommand(@NotNull String name, @Nullable String... aliases) {
         super(name, aliases);
         this.permission = new Permission(name);
+    }
+
+    public void register() {
         MinecraftServer.getCommandManager().register(this);
     }
 }
