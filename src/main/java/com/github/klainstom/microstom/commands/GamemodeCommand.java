@@ -56,7 +56,7 @@ public class GamemodeCommand extends BaseCommand {
             }
 
             // Check permission, this could be replaced with hasPermission
-            if (p.getPermissionLevel() < 2 && !p.hasPermission(getPermission())) {
+            if (!p.hasPermission(getPermission())) {
                 sender.sendMessage(Component.text("You don't have permission to use this command.", NamedTextColor.RED));
                 return;
             }
@@ -71,7 +71,7 @@ public class GamemodeCommand extends BaseCommand {
         addSyntax((sender, context) -> {
             //Check permission for players only
             //This allows the console to use this syntax too
-            if (sender instanceof Player p && (p.getPermissionLevel() < 2 && !p.hasPermission(getPermission()))) {
+            if (sender instanceof Player p && !p.hasPermission(getPermission())) {
                 sender.sendMessage(Component.text("You don't have permission to use this command.", NamedTextColor.RED));
                 return;
             }
