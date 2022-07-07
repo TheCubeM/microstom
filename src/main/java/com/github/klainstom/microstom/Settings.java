@@ -42,6 +42,11 @@ public class Settings {
         private final RunMode MODE;
         private final String VELOCITY_SECRET;
 
+        private final String DESCRIPTION;
+        private final Number MAX_PLAYERS_VISUAL;
+        private final Number MAX_PLAYERS;
+        private final boolean HIDE_PLAYER_NAMES;
+
         private final boolean PLAYER_RESTART;
         private final boolean PLAYER_SHUTDOWN;
 
@@ -57,6 +62,11 @@ public class Settings {
 
             this.MODE = RunMode.ONLINE;
             this.VELOCITY_SECRET = "";
+
+            this.DESCRIPTION = "";
+            this.MAX_PLAYERS_VISUAL = 0;
+            this.MAX_PLAYERS = 1;
+            this.HIDE_PLAYER_NAMES = false;
 
             this.PLAYER_RESTART = false;
             this.PLAYER_SHUTDOWN = false;
@@ -128,4 +138,8 @@ public class Settings {
     public static String getChunkViewDistance() { return currentSettings.CHUNK_VIEW_DISTANCE; }
     public static String getEntityViewDistance() { return currentSettings.ENTITY_VIEW_DISTANCE; }
     public static boolean isTerminalDisabled() { return currentSettings.TERMINAL_DISABLED.getValue(); }
+    public static String getDescription() { return currentSettings.DESCRIPTION;}
+    public static int getMaxPlayers() {return currentSettings.MAX_PLAYERS.intValue();}
+    public static int getMaxPlayersVisual() {return currentSettings.MAX_PLAYERS_VISUAL.intValue();}
+    public static boolean hidePlayerList() { return currentSettings.HIDE_PLAYER_NAMES; }
 }
