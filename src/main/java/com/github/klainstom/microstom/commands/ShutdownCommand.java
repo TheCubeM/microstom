@@ -10,7 +10,7 @@ public class ShutdownCommand extends BaseCommand {
         super("shutdown", "stop");
         setCondition(((sender, commandString) -> (sender instanceof ServerSender)
                 || (sender instanceof ConsoleSender)
-                || sender instanceof Player p && (p.getPermissionLevel() < 4 || p.hasPermission(getPermission()))
+                || sender instanceof Player p && p.hasPermission(getPermission())
         ));
         addSyntax(((sender, context) -> MinecraftServer.stopCleanly()));
     }

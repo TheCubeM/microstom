@@ -1,6 +1,5 @@
 package com.github.klainstom.microstom.commands;
 
-import com.github.klainstom.microstom.Settings;
 import net.minestom.server.MinecraftServer;
 import net.minestom.server.command.ConsoleSender;
 import net.minestom.server.command.ServerSender;
@@ -13,9 +12,8 @@ public class RestartCommand extends BaseCommand {
         super("restart");
         setCondition(((sender, commandString) -> (sender instanceof ServerSender)
                 || (sender instanceof ConsoleSender)
-                || Settings.isAllowPlayerRestart()
-                || sender instanceof Player p && (p.getPermissionLevel() < 4 || p.hasPermission(getPermission()))
-        ));
+                || sender instanceof Player p && p.hasPermission(getPermission())
+                ));
         addSyntax((sender, context) -> {
             Runtime.getRuntime().addShutdownHook(new Thread(() -> {
                 try {

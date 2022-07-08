@@ -5,7 +5,8 @@ import lombok.Getter;
 public enum Commands {
     SHUTDOWN(new ShutdownCommand()),
     RESTART(new RestartCommand()),
-    GAMEMODE(new GamemodeCommand());
+    GAMEMODE(new GamemodeCommand()),
+    TIME(new TimeCommand());
 
     @Getter private final BaseCommand command;
     Commands(BaseCommand command) {

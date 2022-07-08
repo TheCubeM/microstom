@@ -1,6 +1,7 @@
 package com.github.klainstom.microstom;
 
 import com.github.klainstom.microstom.commands.Commands;
+import lombok.Getter;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;
 import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
@@ -28,6 +29,7 @@ public class Server {
     public static final String VERSION = "&version";
     public static final String MINESTOM_VERSION = "&minestomVersion";
     private static final String START_SCRIPT_FILENAME = "start.sh";
+    @Getter private static InstanceContainer spawningInstanceContainer;
     private static String cachedFavicon;
 
     public static void main(String[] args) throws IOException {
@@ -68,7 +70,7 @@ public class Server {
         }
 
         // load instance from ./world
-        InstanceContainer spawningInstanceContainer = MinecraftServer.getInstanceManager()
+        spawningInstanceContainer = MinecraftServer.getInstanceManager()
                 .createInstanceContainer();
 
         MinecraftServer.getGlobalEventHandler().addListener(PlayerLoginEvent.class, event -> {
