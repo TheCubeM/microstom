@@ -5,6 +5,8 @@ import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;
 import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
 import net.minestom.server.MinecraftServer;
+import net.minestom.server.coordinate.Pos;
+import net.minestom.server.entity.GameMode;
 import net.minestom.server.event.player.PlayerLoginEvent;
 import net.minestom.server.event.server.ServerListPingEvent;
 import net.minestom.server.extras.MojangAuth;
@@ -77,6 +79,9 @@ public class Server {
                 event.getPlayer().kick(String.format("The server is full! (%d/%d)",onlinePlayers,maxPlayers));
             }
             event.setSpawningInstance(spawningInstanceContainer);
+            Settings.Position pos = Settings.getSpawnPoint();
+            event.getPlayer().setRespawnPoint(new Pos(pos.getX(),pos.getY(),pos.getZ(),pos.getYaw(), pos.getPitch()));
+            event.getPlayer().setGameMode(GameMode.ADVENTURE);
             if (MinecraftServer.getInstanceManager().getInstances().isEmpty())
                 event.getPlayer().kick(Component.text("There is no instance available!", NamedTextColor.RED));
         });
@@ -101,6 +106,8 @@ public class Server {
             responseData.setMaxPlayer(Settings.getMaxPlayersVisual());
             responseData.setPlayersHidden(Settings.hidePlayerList());
             responseData.setDescription(LegacyComponentSerializer.legacyAmpersand().deserialize(Settings.getDescription()));
+            responseData.setProtocol(758);
+            responseData.setVersion("The Cube");
             if(!cachedFavicon.isEmpty()) {
                 responseData.setFavicon("data:image/png;base64,"+cachedFavicon);
             }

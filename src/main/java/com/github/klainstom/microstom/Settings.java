@@ -2,6 +2,7 @@ package com.github.klainstom.microstom;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import lombok.Getter;
 
 import java.io.*;
 
@@ -47,6 +48,8 @@ public class Settings {
         private final Number MAX_PLAYERS;
         private final boolean HIDE_PLAYER_NAMES;
 
+        private final Position SPAWN;
+
         private final boolean PLAYER_RESTART;
         private final boolean PLAYER_SHUTDOWN;
 
@@ -67,6 +70,8 @@ public class Settings {
             this.MAX_PLAYERS_VISUAL = 0;
             this.MAX_PLAYERS = 1;
             this.HIDE_PLAYER_NAMES = false;
+
+            this.SPAWN = new Position(0, 0, 0, 0, 0);
 
             this.PLAYER_RESTART = false;
             this.PLAYER_SHUTDOWN = false;
@@ -111,6 +116,22 @@ public class Settings {
         }
     }
 
+    static class Position {
+        @Getter private final double x;
+        @Getter private final double y;
+        @Getter private final double z;
+        @Getter private final float yaw;
+        @Getter private final float pitch;
+
+        private Position(double x, double y, double z, float yaw, float pitch) {
+            this.x = x;
+            this.y = y;
+            this.z = z;
+            this.yaw = yaw;
+            this.pitch = pitch;
+        }
+    }
+
     public static RunMode getMode() { return currentSettings.MODE; }
 
     public static String getServerIp() {
@@ -142,4 +163,5 @@ public class Settings {
     public static int getMaxPlayers() {return currentSettings.MAX_PLAYERS.intValue();}
     public static int getMaxPlayersVisual() {return currentSettings.MAX_PLAYERS_VISUAL.intValue();}
     public static boolean hidePlayerList() { return currentSettings.HIDE_PLAYER_NAMES; }
+    public static Position getSpawnPoint() { return currentSettings.SPAWN; }
 }
