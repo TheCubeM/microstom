@@ -50,9 +50,6 @@ public class Settings {
 
         private final Position SPAWN;
 
-        private final boolean PLAYER_RESTART;
-        private final boolean PLAYER_SHUTDOWN;
-
         // JVM arguments
         private final String TPS;
         private final String CHUNK_VIEW_DISTANCE;
@@ -72,9 +69,6 @@ public class Settings {
             this.HIDE_PLAYER_NAMES = false;
 
             this.SPAWN = new Position(0, 0, 0, 0, 0);
-
-            this.PLAYER_RESTART = false;
-            this.PLAYER_SHUTDOWN = false;
 
             this.TPS = null;
             this.CHUNK_VIEW_DISTANCE = null;
@@ -150,10 +144,6 @@ public class Settings {
     public static String getVelocitySecret() {
         return currentSettings.VELOCITY_SECRET;
     }
-
-    public static boolean isAllowPlayerRestart() { return currentSettings.PLAYER_RESTART; }
-
-    public static boolean isAllowPlayerShutdown() { return currentSettings.PLAYER_SHUTDOWN; }
 
     public static String getTps() { return currentSettings.TPS; }
     public static String getChunkViewDistance() { return currentSettings.CHUNK_VIEW_DISTANCE; }
