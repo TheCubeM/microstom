@@ -21,7 +21,7 @@ public class RestartCommand extends BaseCommand {
                     MinecraftServer.LOGGER.info("Start new server.");
                 } catch (IOException e) {
                     if (!(sender instanceof ConsoleSender)) sender.sendMessage("Could not restart server.");
-                    LOGGER.error("Could not restart server.", e);
+                    MinecraftServer.LOGGER.error("Could not restart server.", e);
                 }
             }, "RestartHook"));
             MinecraftServer.stopCleanly();

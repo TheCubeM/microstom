@@ -76,8 +76,8 @@ public class Server {
         MinecraftServer.getGlobalEventHandler().addListener(PlayerLoginEvent.class, event -> {
             int onlinePlayers = MinecraftServer.getConnectionManager().getOnlinePlayers().size();
             int maxPlayers = Settings.getMaxPlayers();
-            if(!(Settings.getMaxPlayers() > -1 &&
-                    onlinePlayers >= maxPlayers)) {
+            if(Settings.getMaxPlayers() > -1 &&
+                    onlinePlayers >= maxPlayers) {
                 event.getPlayer().kick(String.format("The server is full! (%d/%d)",onlinePlayers,maxPlayers));
             }
             event.setSpawningInstance(spawningInstanceContainer);
@@ -108,7 +108,7 @@ public class Server {
             responseData.setMaxPlayer(Settings.getMaxPlayersVisual());
             responseData.setPlayersHidden(Settings.hidePlayerList());
             responseData.setDescription(LegacyComponentSerializer.legacyAmpersand().deserialize(Settings.getDescription()));
-            responseData.setProtocol(758);
+            responseData.setProtocol(760);
             responseData.setVersion("The Cube");
             if(!cachedFavicon.isEmpty()) {
                 responseData.setFavicon("data:image/png;base64,"+cachedFavicon);
