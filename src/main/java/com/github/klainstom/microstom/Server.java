@@ -77,7 +77,7 @@ public class Server {
             int onlinePlayers = MinecraftServer.getConnectionManager().getOnlinePlayers().size();
             int maxPlayers = Settings.getMaxPlayers();
             if(Settings.getMaxPlayers() > -1 &&
-                    onlinePlayers >= maxPlayers) {
+                    onlinePlayers > maxPlayers) {
                 event.getPlayer().kick(String.format("The server is full! (%d/%d)",onlinePlayers,maxPlayers));
             }
             event.setSpawningInstance(spawningInstanceContainer);
